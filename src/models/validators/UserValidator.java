@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import models.User;;
+import models.User;
 import utils.DBUtil;
 
 public class UserValidator {
