@@ -10,7 +10,7 @@
     </div>
 </c:if>
 <label for="user_name">ユーザー名</label><br />
-<input type="text" name="u_name" value="${user.user_name}" />
+<input type="text" name="user_name" value="${user.user_name}" />
 <br /><br />
 
 <label for="name">氏名</label><br />
