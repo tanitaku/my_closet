@@ -9,10 +9,10 @@ import models.User;
 import utils.DBUtil;
 
 public class UserValidator {
-    public static List<String> validate(User u, Boolean user_nameDuplicateCheckFlag, Boolean passwordCheckFlag) {
+    public static List<String> validate(User u, Boolean userNameDuplicateCheckFlag, Boolean passwordCheckFlag) {
         List<String> errors = new ArrayList<String>();
 
-        String user_name_error = validateUserName(u.getUser_name(), user_nameDuplicateCheckFlag);
+        String user_name_error = validateUserName(u.getUser_name(), userNameDuplicateCheckFlag);
         if(!user_name_error.equals("")) {
             errors.add(user_name_error);
         }
@@ -31,14 +31,14 @@ public class UserValidator {
     }
 
     // ユーザーネーム
-    private static String validateUserName(String user_name, Boolean user_nameDuplicateCheckFlag) {
+    private static String validateUserName(String user_name, Boolean userNameDuplicateCheckFlag) {
         // 必須入力チェック
         if(user_name == null || user_name.equals("")) {
             return "ユーザー名を入力してください。";
         }
 
         // すでに登録されているユーザー名との重複チェック
-        if(user_nameDuplicateCheckFlag) {
+        if(userNameDuplicateCheckFlag) {
             EntityManager em = DBUtil.createEntityManager();
             long user_count = (long)em.createNamedQuery("checkRegisteredUserName", Long.class)
                                            .setParameter("user_name", user_name)
