@@ -36,6 +36,11 @@ public class ItemValidator {
             errors.add(color_error);
         }
 
+        String price_error = _validatePrice(i.getPrice());
+        if(!price_error.equals("")) {
+            errors.add(price_error);
+        }
+
         return errors;
     }
 
@@ -79,4 +84,11 @@ public class ItemValidator {
 
         return "";
         }
+
+    private static String _validatePrice(Integer price) {
+        if(price == null || price.equals("")) {
+            return "価格を入力してください";
+        }
+        return "";
+    }
     }
