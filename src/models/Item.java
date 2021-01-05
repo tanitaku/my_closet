@@ -52,8 +52,6 @@ public class Item {
     @Column(name = "color", nullable = false)
     private String color;
 
-    @Column(name = "season", nullable = false)
-    private String season;
 
     @Lob
     @Column(name = "content", nullable = false)
@@ -132,13 +130,6 @@ public class Item {
         this.color = color;
     }
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
 
     public String getContent() {
         return content;

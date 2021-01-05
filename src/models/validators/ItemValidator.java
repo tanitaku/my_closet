@@ -21,10 +21,6 @@ public class ItemValidator {
             errors.add(content_error);
         }
 
-        String season_error = _validateSeason(i.getSeason());
-        if(!season_error.equals("")) {
-            errors.add(season_error);
-        }
 
         String brand_error = _validateBrand(i.getBrand());
         if(!brand_error.equals("")) {
@@ -34,6 +30,11 @@ public class ItemValidator {
         String color_error = _validateColor(i.getColor());
         if(!color_error.equals("")) {
             errors.add(color_error);
+        }
+
+        String path_error = _validatePath(i.getPath());
+        if(!path_error.equals("")) {
+            errors.add(path_error);
         }
 
         String price_error = _validatePrice(i.getPrice());
@@ -60,14 +61,6 @@ public class ItemValidator {
         return "";
     }
 
-    private static String _validateSeason(String season) {
-        if(season == null || season.equals("")) {
-            return "購入時の季節を入力してください。";
-        }
-
-        return "";
-
-        }
 
     private static String _validateBrand(String brand) {
         if(brand == null || brand.equals("")) {
@@ -80,6 +73,14 @@ public class ItemValidator {
     private static String _validateColor(String color) {
         if(color == null || color.equals("")) {
             return "色を入力してください";
+            }
+
+        return "";
+        }
+
+    private static String _validatePath(String path) {
+        if(path == null || path.equals("")) {
+            return "画像を選んでください";
             }
 
         return "";
