@@ -91,7 +91,7 @@ public class ItemsCreateServlet extends HttpServlet {
             filePart1.write(getServletContext().getRealPath("./images/" + name1));
 
 
-            i.setPath("./images/" + fileName);
+            i.setPath("../images/" + fileName);
 
             List<String> errors = ItemValidator.validate(i);
 

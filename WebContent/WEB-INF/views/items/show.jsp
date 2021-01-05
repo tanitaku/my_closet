@@ -31,6 +31,12 @@
                                 <pre><c:out value="${item.content}" /></pre>
                             </td>
                         </tr>
+                        <tr>
+                            <th>写真</th>
+                            <td>
+                                <img src="${item.path}" height=100px width=100px>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
