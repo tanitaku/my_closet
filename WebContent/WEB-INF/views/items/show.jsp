@@ -5,6 +5,11 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${item != null}">
+            <c:if test="${flush != null}">
+                <div id="flush_success">
+                    <c:out value="${flush}"></c:out>
+                </div>
+            </c:if>
                 <h2>アイテム　詳細ページ</h2>
 
                 <table>
@@ -40,15 +45,32 @@
                     </tbody>
                 </table>
 
-                <c:if test="${sessionScope.login_user.id == item.user.id}">
-                    <p><a href="<c:url value="/items/edit?id=${item.id}" />">このページを編集する</a></p>
-                </c:if>
+                <c:choose>
+                <c:when test="${sessionScope.login_user.id == item.user.id}">
+                    <p>いいね全<c:out value="${goods}" />件</p>
+                    <p><a href="<c:url value="/items/edit?id=${item.id}" />">アイテム情報を編集する</a></p>
+                 <form method="POST" action="<c:url value='/items/destroy?id=${item.id}"' />">
+                     <input type="hidden" name="_token" value="${_token}" />
+                     <button type="submit">アイテム情報を削除する</button>
+                 </form>
+                </c:when>
+                <c:otherwise>
+                    <form method="POST" action="<c:url value='/items/good?id=${item.id}' />">
+                        <button type="submit" name="good">いいね</button>
+                    </form>
+                    <p><a href="<c:url value="/items/edit?id=${item.id}" />">アイテム情報を編集する</a></p>
+                    <form method="POST" action="<c:url value='/items/destroy?id=${item.id}"' />">
+                     <input type="hidden" name="_token" value="${_token}" />
+                     <button type="submit">アイテム情報を削除する</button>
+                 </form>
+                </c:otherwise>
+                </c:choose>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-
         <p><a href="<c:url value="/items/index" />">一覧に戻る</a></p>
     </c:param>
 </c:import>
+

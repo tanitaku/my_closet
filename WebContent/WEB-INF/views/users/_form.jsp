@@ -17,6 +17,10 @@
 <input type="text" name="name" value="${user.name}" />
 <br /><br />
 
+<label for="height">身長(cm)</label><br />
+<input type="text" name="height" value="${user.height}" />
+<br /><br />
+
 <label for="password">パスワード</label><br />
 <input type="password" name="password" />
 <br /><br />

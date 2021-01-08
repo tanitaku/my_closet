@@ -41,6 +41,12 @@ public class ItemsShowServlet extends HttpServlet {
 
         request.setAttribute("item", i);
         request.setAttribute("_token", request.getSession().getId());
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/items/show.jsp");
         rd.forward(request, response);

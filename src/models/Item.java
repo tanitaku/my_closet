@@ -25,6 +25,23 @@ import javax.persistence.Table;
         name = "getItemsCount",
         query = "SELECT COUNT(i) FROM Item AS i"
     ),
+    @NamedQuery(
+        name = "getMyAllItems",
+        query = "SELECT i FROM Item AS i WHERE i.user = :user ORDER BY i.id DESC"
+        ),
+    @NamedQuery(
+        name = "getMyItemsCount",
+        query = "SELECT COUNT(i) FROM Item AS i WHERE i.user = :user"
+        ),
+    @NamedQuery(
+         name = "sumPrice",
+         query = "SELECT SUM(i.price) FROM Item AS i WHERE i.user = :user"
+         ),
+    @NamedQuery(
+         name = "deleteColumn",
+         query = "DELETE FROM Item AS i WHERE i.id = :id"
+         )
+
 })
 @Entity
 public class Item {

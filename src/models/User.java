@@ -29,7 +29,11 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "checkLoginUserNameAndPassword",
         query = "SELECT u FROM User AS u WHERE u.delete_flag = 0 AND u.user_name = :user_name AND u.password = :password"
-    )
+    ),
+    @NamedQuery(
+            name = "getMyFollower",
+            query = "SELECT u FROM User AS u WHERE u.id = :id"
+            )
 })
 @Entity
 public class User {
@@ -59,6 +63,17 @@ public class User {
 
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
+
+    @Column(name = "height", nullable = false)
+    private Integer height;
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
 
     public Integer getId() {
         return id;

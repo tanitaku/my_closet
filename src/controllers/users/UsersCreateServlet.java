@@ -57,6 +57,7 @@ public class UsersCreateServlet extends HttpServlet {
             u.setCreated_at(currentTime);
             u.setUpdated_at(currentTime);
             u.setDelete_flag(0);
+            u.setHeight(Integer.parseInt(request.getParameter("height")));
 
             List<String> errors = UserValidator.validate(u, true, true);
             if(errors.size() > 0) {

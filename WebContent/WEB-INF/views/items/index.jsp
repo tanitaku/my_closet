@@ -8,6 +8,7 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
+
         <h2>アイテム　一覧</h2>
         <table id="item_list">
             <tbody>
@@ -19,10 +20,23 @@
                 </tr>
                 <c:forEach var="item" items="${items}" varStatus="status">
                     <tr class="row${status.count % 2}">
+                    <c:forEach  var="feses" items="${fes}">
+                      <c:if test="${item.user.id  == feses.id}">
                         <td class="item_category"><c:out value="${item.category}" /></td>
                         <td class="item_date"><fmt:formatDate value='${item.item_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="item_brand">${item.brand}</td>
                         <td class="item_action"><a href="<c:url value='/items/show?id=${item.id}' />">詳細を見る</a></td>
+                    </c:if>
+                    </c:forEach>
+
+                    <c:if test="${login_user == item.user.id}">
+                                <tr class="row${status.count % 2}">
+                                    <td class="item_category"><c:out value="${item.category}" /></td>
+                        <td class="item_date"><fmt:formatDate value='${item.item_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="item_brand">${item.brand}</td>
+                        <td class="item_action"><a href="<c:url value='/items/show?id=${item.id}' />">詳細を見る</a></td>
+                                </tr>
+                            </c:if>
                     </tr>
                 </c:forEach>
             </tbody>
