@@ -15,7 +15,9 @@
 <br /><br />
 
 <label for="category">カテゴリ</label><br />
-<input type="text" name="category" value="${item.category}" />
+<input type="radio" name="category" value="トップス">トップス
+<input type="radio" name="category" value="パンツ">パンツ
+<input type="radio" name="category" value="その他">その他
 <br /><br />
 
 <label for="brand">ブランド</label><br />
@@ -23,11 +25,19 @@
 <br /><br />
 
 <label for="color">色</label><br />
-<input type="text" name="color" value="${item.color}" />
+<input type="color" name="color" list="data1" value="#ff0000">
+
+<datalist id="data1">
+<option value="#ff0000"></option>
+<option value="#00ff00"></option>
+<option value="#0000ff"></option>
+</datalist>
 <br /><br />
 
+
+
 <label for="price">価格</label><br />
-<input type="text" name="price" value="${item.price}" />
+<input type="number" name="price" />
 <br /><br />
 
 

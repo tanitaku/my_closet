@@ -1,10 +1,12 @@
 package controllers.toppage;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TemporalType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +42,16 @@ public class TopPageIndexServlet extends HttpServlet {
 
         User login_user = (User)request.getSession().getAttribute("login_user");
 
+        // 今日の日付
+        Date dt = new Date(System.currentTimeMillis());
+
+        // 一か月前の日付取得
+        Date dt2 = new Date(System.currentTimeMillis());
+        Calendar cd = Calendar.getInstance();
+        cd.setTime(dt2);
+        cd.add(Calendar.MONTH, -1);
+        dt2 = cd.getTime();
+
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
@@ -66,16 +78,32 @@ public class TopPageIndexServlet extends HttpServlet {
             request.setAttribute("sum", 0);
         }
 
+        try {
+            long dates = (long)em.createNamedQuery("getMonth", Long.class)
+                                .setParameter("user", login_user)
+                                .setParameter("today", dt, TemporalType.DATE)
+                                .setParameter("thirty", dt2, TemporalType.DATE)
+                                .getSingleResult();
+            request.setAttribute("d", dates);
+        }catch(Exception e) {
+            request.setAttribute("d", 0);
+        }
+
+
+
+
+
 
 
         em.close();
 
-        Date dt = new Date(System.currentTimeMillis());
+
 
         request.setAttribute("items", items);
         request.setAttribute("items_count", items_count);
         request.setAttribute("page", page);
         request.setAttribute("date", dt);
+
 
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));

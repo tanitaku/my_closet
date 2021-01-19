@@ -1,8 +1,10 @@
 package controllers.items;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Comment;
 import models.Item;
+import models.User;
 import utils.DBUtil;
 
 /**
@@ -35,7 +39,23 @@ public class ItemsShowServlet extends HttpServlet {
 
 
         EntityManager em = DBUtil.createEntityManager();
+
         Item i = em.find(Item.class, Integer.parseInt(request.getParameter("id")));
+
+        User i2 = i.getUser();
+
+
+
+
+
+        // 質問者と回答者のデータがあれば、取得
+        try {
+           List<Comment> q = em.createNamedQuery("checkAnswer", Comment.class)
+                  .setParameter("answer", i2)
+                  .getResultList();
+           request.setAttribute("comment", q);
+
+            } catch(NoResultException ex) {}
 
         em.close();
 
@@ -55,3 +75,4 @@ public class ItemsShowServlet extends HttpServlet {
     }
 
 }
+

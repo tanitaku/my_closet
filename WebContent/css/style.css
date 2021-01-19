@@ -104,6 +104,27 @@ table#user_list td {
     padding: 10px 2%;
 }
 
+table#user_list2 th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#user_list2 .item_category {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#user_list2 .item_date {
+    width: 20%;
+}
+
+table#user_list2 .item_brand {
+    width: 37%;
+}
+
+table#user_list2 .item_action {
+    width: 13%;
+}
+
 tr.row1 {
         background-color: #f2f2f2;
 }
@@ -170,6 +191,25 @@ h3 {
 }
 
 
+.images{
+    display: flex;
+    flex-wrap:wrap;
+}
+
+#imgindex img{
+    width: 30%;/*←画像を横に4つ並べる場合*/
+    padding:0 5px;/*←画像の左右に5pxの余白を入れる場合*/
+    box-sizing:border-box;
+    max-width:100%; /*画像のはみだしを防ぐ*/
+    height: auto; /*画像の縦横比を維持 */
+    border:solid 1px #ccc; /*←画像を1pxのグレーの枠線で囲む指定の場合*/
+    text-align: center;
+}
+
+#new {
+    text-align: center;
+}
+
 .btn--orange,
 a.btn--orange {
   color: #fff;
@@ -180,8 +220,3 @@ a.btn--orange:hover {
   color: #fff;
   background: #f56500;
 }
-
-a.btn--radius {
-   border-radius: 100vh;
-}
-

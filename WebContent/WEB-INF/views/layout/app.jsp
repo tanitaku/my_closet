@@ -18,12 +18,12 @@
                             <a href="<c:url value='/users/index' />">ユーザー管理</a>&nbsp;
                         </c:if>
                         <a href="<c:url value='/items/index' />">服管理</a>&nbsp;
-                        <a href="<c:url value='/data?${sessionScope.login_user.id}' />">ユーザー情報</a>&nbsp;
+                        <a href="<c:url value='/data?${sessionScope.login_user.id}' />">他のユーザー</a>&nbsp;
                     </c:if>
                 </div>
                 <c:if test="${sessionScope.login_user != null}">
                     <div id="user_name">
-                        <c:out value="${sessionScope.login_user.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <c:out value="${sessionScope.login_user.user_name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">ログアウト</a>
                     </div>
                 </c:if>
@@ -32,7 +32,7 @@
                 ${param.content}
             </div>
             <div id="footer">
-                by Takuma Tanioka.
+
             </div>
         </div>
     </body>

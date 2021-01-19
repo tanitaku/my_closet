@@ -10,12 +10,15 @@
          </c:if>
 
          <h2>ユーザー　一覧</h2>
-         <table id="user_list">
+
+         <a href="<c:url value='/follower' />" class="btn btn--orange">フォロワー</a>>
+         <table id="user_list2">
             <tbody>
                 <tr>
                     <th>ユーザー名</th>
                     <th>身長</th>
                     <th>操作</th>
+                    <th>訪問</th>
                 </tr>
                 <c:forEach var="user" items="${users}">
                     <tr class="row${status.count % 2}">
@@ -26,16 +29,14 @@
                            <c:out value="${user.height}" />
                         </td>
                         <td>
-                          <c:if test="${user.id != user_id}">
-                             <c:forEach var="feses" items="${fes}">
-                                <c:if test="${feses.followered.id == user.id}">
-                                    <c:out value="フォロー済み"></c:out>
-                                </c:if>
-                             </c:forEach>
-                                 <c:if test="${feses.followered_id != user.id}">
-                                    <a href="<c:url value='/follow?id=${user.id}' />" class="btn btn--orange btn--radius">フォローする</a>
-                                 </c:if>
-                          </c:if>
+                            <c:if test="${user.id != user_id}">
+                                <a href="<c:url value='/follow?id=${user.id}' />">フォローする</a>
+                            </c:if>
+                       </td>
+                       <td>
+                            <c:if test="${user.id != user_id}">
+                        <a href="<c:url value='/other/user/items?id=${user.id}' />">訪問</a>
+                            </c:if>
                        </td>
                     </tr>
                 </c:forEach>

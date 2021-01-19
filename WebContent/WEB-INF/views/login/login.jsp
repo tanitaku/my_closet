@@ -27,3 +27,8 @@
         </form>
     </c:param>
 </c:import>
+
+<div id="new">
+    <p><a href="<c:url value='/new/user' />">新規登録</a></p>
+</div>
+

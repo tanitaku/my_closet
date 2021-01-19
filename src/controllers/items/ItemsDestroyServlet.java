@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,22 +39,17 @@ public class ItemsDestroyServlet extends HttpServlet {
 
             Item i = em.find(Item.class, Integer.parseInt(request.getParameter("id")));
 
-            String dc = null;
-                try {
-                        dc = em.createNamedQuery("deleteColumn", String.class)
-                                .setParameter("id", i.getId())
-                                .getSingleResult();
-                } catch(NoResultException ex) {}
-
-                if(dc != null) {
+                if(i != null) {
 
                     i.setUpdated_at(new Timestamp(System.currentTimeMillis()));
                     em.getTransaction().begin();
+                    em.remove(i);
                     em.getTransaction().commit();
                     em.close();
-                    request.getSession().setAttribute("flush", "フォローを解除しました。");
+                    request.getSession().setAttribute("flush", "アイテムを削除しました。");
                 } else {
-                        request.getSession().setAttribute("flush", "データが存在しません。");
+                    em.close();
+                    request.getSession().setAttribute("flush", "アイテムが存在しません。");
                 }
 
             response.sendRedirect(request.getContextPath() + "/items/index");

@@ -38,11 +38,14 @@ import javax.persistence.Table;
          query = "SELECT SUM(i.price) FROM Item AS i WHERE i.user = :user"
          ),
     @NamedQuery(
-         name = "deleteColumn",
-         query = "DELETE FROM Item AS i WHERE i.id = :id"
-         )
-
+            name = "getMonth",
+            query = "SELECT SUM(i.price) FROM Item AS i WHERE i.user = :user AND i.item_date < :today AND i.item_date > :thirty "
+            ),
+    @NamedQuery(
+            name = "deleteColumn",
+            query = "DELETE FROM Item AS i WHERE i.id = :id")
 })
+
 @Entity
 public class Item {
     @Id

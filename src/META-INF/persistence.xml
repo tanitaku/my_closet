@@ -6,6 +6,7 @@
 		<class>models.Item</class>
 		<class>models.Relation</class>
 		<class>models.Like</class>
+		<class>models.Comment</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/my_closet?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>

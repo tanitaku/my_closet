@@ -1,4 +1,4 @@
-package controllers.items;
+package controllers.visit;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,18 +15,17 @@ import models.Item;
 import models.User;
 import utils.DBUtil;
 
-
 /**
- * Servlet implementation class ItemsIndexServlet
+ * Servlet implementation class OtherUserItemsIndexServlet
  */
-@WebServlet("/items/index")
-public class ItemsIndexServlet extends HttpServlet {
+@WebServlet("/other/user/items")
+public class OtherUserItemsIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemsIndexServlet() {
+    public OtherUserItemsIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,34 +44,27 @@ public class ItemsIndexServlet extends HttpServlet {
             page = 1;
         }
 
-
-        User login_user = (User) request.getSession().getAttribute("login_user");
+        User u2 = em.find(User.class, Integer.parseInt(request.getParameter("id")));
 
 
         List<Item> items = em.createNamedQuery("getMyAllItems", Item.class)
-                        .setParameter("user", login_user)
-                        .setFirstResult(15 * (page - 1))
-                        .setMaxResults(15)
-                        .getResultList();
+                .setParameter("user", u2)
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
+                .getResultList();
 
-        long items_count = (long)em.createNamedQuery("getMyItemsCount", Long.class)
-                        .setParameter("user", login_user)
-                        .getSingleResult();
 
+        request.setAttribute("user", u2.getUser_name());
+        request.setAttribute("user_id", u2.getId());
 
         em.close();
 
         request.setAttribute("items", items);
-        request.setAttribute("items_count", items_count);
-        request.setAttribute("page", page);
 
-        if(request.getSession().getAttribute("flush") != null) {
-            request.setAttribute("flush", request.getSession().getAttribute("flush"));
-            request.getSession().removeAttribute("flush");
-        }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/items/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/items/other.jsp");
         rd.forward(request, response);
     }
+    }
 
-}
+

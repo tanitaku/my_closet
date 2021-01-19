@@ -10,37 +10,14 @@
         </c:if>
 
         <h2>アイテム　一覧</h2>
-        <table id="item_list">
-            <tbody>
-                <tr>
-                    <th class="item_category">カテゴリ</th>
-                    <th class="item_date">日付</th>
-                    <th class="item_brand">ブランド</th>
-                    <th class="item_action">操作</th>
-                </tr>
-                <c:forEach var="item" items="${items}" varStatus="status">
-                    <tr class="row${status.count % 2}">
-                    <c:forEach  var="feses" items="${fes}">
-                      <c:if test="${item.user.id  == feses.id}">
-                        <td class="item_category"><c:out value="${item.category}" /></td>
-                        <td class="item_date"><fmt:formatDate value='${item.item_date}' pattern='yyyy-MM-dd' /></td>
-                        <td class="item_brand">${item.brand}</td>
-                        <td class="item_action"><a href="<c:url value='/items/show?id=${item.id}' />">詳細を見る</a></td>
-                    </c:if>
-                    </c:forEach>
+        <h2><a href="<c:url value='/goods/index' />">いいねしたアイテム</a></h2>
 
-                    <c:if test="${login_user == item.user.id}">
-                                <tr class="row${status.count % 2}">
-                                    <td class="item_category"><c:out value="${item.category}" /></td>
-                        <td class="item_date"><fmt:formatDate value='${item.item_date}' pattern='yyyy-MM-dd' /></td>
-                        <td class="item_brand">${item.brand}</td>
-                        <td class="item_action"><a href="<c:url value='/items/show?id=${item.id}' />">詳細を見る</a></td>
-                                </tr>
-                            </c:if>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                <div id="imgindex">
+                    <c:forEach var="item" items="${items}">
+                       <a href="<c:url value='/items/show?id=${item.id}' />"><img src="${item.path}"></a>
+                    </c:forEach>
+                </div>
+        <p><a href="<c:url value='/items/new' />">新規アイテムの登録</a></p>
 
         <div id="pagination">
             （全 ${items_count} 件）<br />
@@ -55,7 +32,6 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/items/new' />">新規アイテムの登録</a></p>
 
     </c:param>
 </c:import>

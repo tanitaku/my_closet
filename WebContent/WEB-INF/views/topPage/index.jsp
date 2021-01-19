@@ -13,6 +13,7 @@
         <c:if test="${sum != null}">
             <h2>総合計 \ <c:out value="${sum}" /></h2>
         </c:if>
+        <h2>直近一か月の出費　￥<c:out value="${d}"></c:out></h2>
         <h3>【自分のアイテム　一覧】</h3>
         <table id="item_list">
             <tbody>
@@ -33,11 +34,6 @@
             </tbody>
         </table>
 
-
-
-
-
-
         <div id="pagination">
             （全 ${items_count} 件）<br />
             <c:forEach var="i" begin="1" end="${((items_count - 1) / 15) + 1}" step="1">
@@ -51,6 +47,11 @@
                 </c:choose>
             </c:forEach>
         </div>
+
+
+
+
+
         <p><a href="<c:url value='/items/new' />">新規アイテムの登録</a></p>
     </c:param>
 </c:import>

@@ -1,4 +1,4 @@
-package controllers.users;
+package controllers.follow;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,16 +16,16 @@ import models.User;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class UsersDataServlet
+ * Servlet implementation class UsersFollowerServlet
  */
-@WebServlet("/data")
-public class UsersDataServlet extends HttpServlet {
+@WebServlet("/follower")
+public class UsersFollowerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersDataServlet() {
+    public UsersFollowerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,6 @@ public class UsersDataServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-
         EntityManager em = DBUtil.createEntityManager();
 
         // 開くページ数を取得（デフォルトが1ページ目）
@@ -45,37 +44,17 @@ public class UsersDataServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) {}
 
-     // 最大件数と開始位置を指定してメッセージを取得
-        List<User> users = em.createNamedQuery("getAllUsers", User.class)
-                                     .setFirstResult(15 * (page - 1)) // ページ１の場合、０から15件表示するということ
-                                     .setMaxResults(15)
-                                     .getResultList();
-
-     // 全件数を取得
-        try {
-        long users_count = (long)em.createNamedQuery("getUsersCount", Long.class)
-                                        .getSingleResult();
-        request.setAttribute("users_count", users_count);
-        } catch(Exception e) {
-            request.setAttribute("users_count", 0);
-        }
-
-        Relation test = new Relation();
-        test.setFollower((User)request.getSession().getAttribute("login_user"));
-        User u = test.getFollower();
 
 
-        try {
+
+        Relation test2 = new Relation();
+        test2.setFollower((User)request.getSession().getAttribute("login_user"));
+        User u = test2.getFollower();
+
+        // フォロワーを取得
         List<Relation> fe = em.createNamedQuery("getMyAllFollowers", Relation.class)
                 .setParameter("follower", u)
                 .getResultList();
-            request.setAttribute("fes", fe);
-        } catch(Exception e) {
-            request.setAttribute("fes", 0);
-        }
-
-
-
 
 
 
@@ -89,13 +68,12 @@ public class UsersDataServlet extends HttpServlet {
 
 
         // リクエストスコープに保存する
-        request.setAttribute("users", users);
         request.setAttribute("page", page);
         request.setAttribute("user_id", u.getId());
+        request.setAttribute("fes", fe);
 
 
-
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/data.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/follower.jsp");
         rd.forward(request, response);
 
     }
