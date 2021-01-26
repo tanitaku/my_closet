@@ -9,13 +9,14 @@
 		<class>models.Comment</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/my_closet?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-			<property name="javax.persistence.jdbc.user" value="repuser"/>
-			<property name="javax.persistence.jdbc.password" value="reppass"/>
-			<property name="javax.persistence.schema-generation.database.action" value="create"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_35f7a3690569791?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
+			<property name="javax.persistence.jdbc.user" value="bfc045e9c6b358"/>
+			<property name="javax.persistence.jdbc.password" value="4be2adb9"/>
+			<property name="javax.persistence.schema-generation.scripts.action" value="none"/>
 		</properties>
 	</persistence-unit>
 </persistence>

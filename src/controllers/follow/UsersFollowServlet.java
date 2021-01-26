@@ -44,8 +44,6 @@ public class UsersFollowServlet extends HttpServlet {
            User u = em.find(User.class, Integer.parseInt(request.getParameter("id")));
            f.setFollowered(u);
 
-           f.setFollow_flag(1);
-
 
             User u1 = f.getFollower();
             User u2 = f.getFollowered();

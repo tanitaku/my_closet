@@ -54,17 +54,19 @@
                     </tbody>
                 </table>
 
+                <h1>コメント一覧</h1>
+
                 <c:choose>
                     <c:when test="${sessionScope.login_user.id == item.user.id}">
 
                          <c:forEach var="comments" items="${comment}">
-                            <p>ID:<c:out value="${comments.id}"/>　名前:<c:out value="${comments.answer.user_name}"/>　日付:<c:out value="${comments.time}"/><br>
+                            <p>ID:<c:out value="${comments.id}"/>　名前:<c:out value="${comments.user.user_name}"/>　日付:<c:out value="${comments.time}"/><br>
                             <c:out value="${comments.comment}"/></p>
                          </c:forEach>
 
                          <form method="POST" action="<c:url value="/question?id=${item.id}" />">
                             <p>コメント:<br>
-                            <textarea name="comment" rows="5" cols="40" placeholder="ユーザー名さんへ"></textarea>
+                            <textarea name="comment" rows="5" cols="40"></textarea>
                             </p>
                             <p><input type="submit" value="送信"></p>
                          </form>
@@ -89,7 +91,7 @@
 
                     <form method="POST" action="<c:url value="/question?id=${item.id}" />">
                         <p>コメント:<br>
-                        <textarea name="comment" rows="5" cols="40"></textarea>
+                        <textarea name="comment" rows="5" cols="40" placeholder="${item.user.user_name}さんへ"></textarea>
                         </p>
                         <p><input type="submit" value="送信"></p>
                     </form>

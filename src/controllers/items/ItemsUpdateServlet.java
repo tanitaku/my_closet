@@ -2,7 +2,6 @@ package controllers.items;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -51,7 +50,6 @@ public class ItemsUpdateServlet extends HttpServlet {
             i.setBrand(request.getParameter("brand"));
             i.setColor(request.getParameter("color"));
             i.setContent(request.getParameter("content"));
-            i.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             String i2 = request.getParameter("price");
             Integer i3 = Integer.parseInt(i2);

@@ -17,7 +17,7 @@
                 <tr>
                     <th>ユーザー名</th>
                     <th>身長</th>
-                    <th>操作</th>
+                    <th>フォロー</th>
                     <th>訪問</th>
                 </tr>
                 <c:forEach var="user" items="${users}">

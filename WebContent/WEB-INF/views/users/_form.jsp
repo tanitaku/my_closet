@@ -13,8 +13,8 @@
 <input type="text" name="user_name" value="${user.user_name}" />
 <br /><br />
 
-<label for="name">氏名</label><br />
-<input type="text" name="name" value="${user.name}" />
+<label for="email">メールアドレス</label><br />
+<input type="text" name="email" value="${user.email}" />
 <br /><br />
 
 <label for="height">身長(cm)</label><br />
@@ -33,4 +33,4 @@
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">投稿</button>
+<button type="submit">登録</button>

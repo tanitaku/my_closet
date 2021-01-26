@@ -49,8 +49,8 @@ public class User {
     @Column(name = "password", length = 64, nullable = false)
     private String password;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Column(name = "admin_flag", nullable = false)
     private Integer admin_flag;
@@ -99,12 +99,12 @@ public class User {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getAdmin_flag() {

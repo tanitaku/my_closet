@@ -206,8 +206,11 @@ h3 {
     text-align: center;
 }
 
-#new {
-    text-align: center;
+
+
+#top {
+    display: flex;
+    flex-direction: row;
 }
 
 .btn--orange,

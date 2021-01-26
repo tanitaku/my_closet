@@ -5,17 +5,17 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${user != null}">
-                <h2>id : ${user.id} のユーザー情報　詳細ページ</h2>
+                <h2>${user.user_name} のユーザー情報　詳細ページ</h2>
 
                 <table>
                     <tbody>
                         <tr>
-                            <th>ユーザー名</th>
-                            <td><c:out value="${user.user_name}" /></td>
+                            <th>ユーザーID</th>
+                            <td><c:out value="${user.id}" /></td>
                         </tr>
                         <tr>
-                            <th>氏名</th>
-                            <td><c:out value="${user.name}" /></td>
+                            <th>メールアドレス</th>
+                            <td><c:out value="${user.email}" /></td>
                         </tr>
                         <tr>
                             <th>権限</th>
@@ -41,6 +41,10 @@
                     </tbody>
                 </table>
 
+                <h2>ユーザーのアイテム</h2>
+                <c:forEach var="item" items="${items}">
+                    <a href="<c:url value='/items/show?id=${item.id}' />"><img src="${item.path}" height=100px width=100px></a>
+                </c:forEach>
                 <p><a href="<c:url value='/users/edit?id=${user.id}' />">このユーザー情報を編集する</a></p>
             </c:when>
             <c:otherwise>

@@ -25,13 +25,7 @@
 <br /><br />
 
 <label for="color">色</label><br />
-<input type="color" name="color" list="data1" value="#ff0000">
-
-<datalist id="data1">
-<option value="#ff0000"></option>
-<option value="#00ff00"></option>
-<option value="#0000ff"></option>
-</datalist>
+<input type="text" name="color" >
 <br /><br />
 
 

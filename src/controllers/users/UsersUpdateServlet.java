@@ -67,7 +67,7 @@ public class UsersUpdateServlet extends HttpServlet {
                         );
             }
 
-            u.setName(request.getParameter("name"));
+            u.setEmail(request.getParameter("email"));
             u.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             u.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             u.setDelete_flag(0);

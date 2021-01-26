@@ -12,13 +12,13 @@
             <tbody>
                 <tr>
                     <th>ユーザー名</th>
-                    <th>氏名</th>
+                    <th>メールアドレス</th>
                     <th>操作</th>
                 </tr>
                 <c:forEach var="user" items="${users}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${user.user_name}" /></td>
-                        <td><c:out value="${user.name}" /></td>
+                        <td><c:out value="${user.email}" /></td>
                         <td>
                             <c:choose>
                                 <c:when test="${user.delete_flag == 1}">

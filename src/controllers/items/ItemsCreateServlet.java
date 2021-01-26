@@ -2,7 +2,6 @@ package controllers.items;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -67,20 +66,7 @@ public class ItemsCreateServlet extends HttpServlet {
             Integer i3 = Integer.parseInt(i2);
             i.setPrice(i3);
 
-
-            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            i.setCreated_at(currentTime);
-            i.setUpdated_at(currentTime);
-
             request.setCharacterEncoding("UTF-8");
-
-
-            //画像ストリームの取得
-//            InputStream is= null;
-//            Part filePart = request.getPart("image");
-//            if (filePart != null) {
-//                is = filePart.getInputStream();
-//            }
 
             // 画像のデータ受け取り、ファイル名取得
             Part filePart1 = request.getPart("image");

@@ -1,6 +1,5 @@
 package models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,18 +44,6 @@ public class Relation {
     @ManyToOne
     @JoinColumn(name = "followered_id", nullable = false)
     private User followered;
-
-    @Column(name = "follow_flag", nullable = false)
-    private Integer follow_flag;
-
-
-    public Integer getFollow_flag() {
-        return follow_flag;
-    }
-
-    public void setFollow_flag(Integer follow_flag) {
-        this.follow_flag = follow_flag;
-    }
 
     public Long getId() {
         return id;

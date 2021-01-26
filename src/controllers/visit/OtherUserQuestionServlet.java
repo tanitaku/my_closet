@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,9 +46,10 @@ public class OtherUserQuestionServlet extends HttpServlet {
 
 
         //質問された人の情報を保存
-        q.setItem(em.find(Item.class, Integer.parseInt(request.getParameter("id"))));
         Item i = em.find(Item.class, Integer.parseInt(request.getParameter("id")));
         User answer = i.getUser();
+
+        q.setItem(i);
 
         q.setAnswer(answer);
 
@@ -58,6 +58,7 @@ public class OtherUserQuestionServlet extends HttpServlet {
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         q.setTime(currentTime);
 
+
         List<String> errors = CommentValidator.validate(q);
 
         if(errors.size() > 0) {
@@ -65,17 +66,17 @@ public class OtherUserQuestionServlet extends HttpServlet {
             em.close();
 
             request.setAttribute("comment", q);
-            request.setAttribute("errors", errors);
+            request.getSession().setAttribute("errors", errors);
             request.setAttribute("_token", request.getSession().getId());
-            request.setAttribute("item", i);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/items/show.jsp");
-            rd.forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/items/show?id=" + i.getId());
         } else {
             em.getTransaction().begin();
             em.persist(q);
             em.getTransaction().commit();
             em.close();
+
+            request.setAttribute("comment", q);
             request.getSession().setAttribute("flush", "コメントを投稿しました");
             response.sendRedirect(request.getContextPath() + "/items/show?id=" + i.getId());
         }

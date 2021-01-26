@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 
 
-@Table(name = "Questions")
+@Table(name = "Comments")
 @NamedQueries({
 @NamedQuery(
         name = "checkAnswer",

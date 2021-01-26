@@ -1,7 +1,6 @@
 package controllers.items;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -41,7 +40,6 @@ public class ItemsDestroyServlet extends HttpServlet {
 
                 if(i != null) {
 
-                    i.setUpdated_at(new Timestamp(System.currentTimeMillis()));
                     em.getTransaction().begin();
                     em.remove(i);
                     em.getTransaction().commit();
